@@ -31,17 +31,9 @@
         }
 
         @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Chinese Pattern Overlay */
@@ -51,7 +43,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image:
+            background-image: 
                 radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
                 radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.05) 0%, transparent 20%),
                 radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 20%);
@@ -118,15 +110,8 @@
         }
 
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
 
         /* Animated Cherry Blossoms */
@@ -147,15 +132,12 @@
                 transform: translateY(-100px) rotate(0deg);
                 opacity: 0;
             }
-
             10% {
                 opacity: 1;
             }
-
             90% {
                 opacity: 0.7;
             }
-
             100% {
                 transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
@@ -197,50 +179,60 @@
             transition: all 0.3s ease;
         }
 
-        /* Hero Section */
-        .hero {
+        /* Hero Video Section */
+        .hero-video-container {
             position: relative;
             height: 100vh;
+            min-height: 500px;
             overflow: hidden;
         }
 
         .hero-video {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            object-fit: cover;
+        }
+
+        .video-overlay {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
         }
 
         .hero-content {
-            position: relative;
-            z-index: 1;
+            position: absolute;
             top: 50%;
-            transform: translateY(-50%);
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            color: #fff;
+            color: white;
+            z-index: 2;
+            width: 80%;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
+            font-family: 'Ma Shan Zheng', cursive;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            margin-bottom: 1rem;
         }
 
         .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
+            font-size: 1.4rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            margin-bottom: 2rem;
         }
-
-        .hero-content .btn {
-            background-color: #FFD700;
-            border: none;
-            color: #000;
-            padding: 10px 25px;
-            font-weight: 600;
-        }
-
 
         /* Section Titles */
         .section-title {
@@ -369,19 +361,12 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
+            0%, 20%, 50%, 80%, 100% {
                 transform: rotate(45deg) translateY(0);
             }
-
             40% {
                 transform: rotate(45deg) translateY(-10px);
             }
-
             60% {
                 transform: rotate(45deg) translateY(-5px);
             }
@@ -699,37 +684,37 @@
     <!-- Chinese Background Elements -->
     <div class="chinese-background"></div>
     <div class="pattern-overlay"></div>
-
+    
     <!-- Animated Lanterns -->
     <div class="lantern"></div>
     <div class="lantern"></div>
     <div class="lantern"></div>
     <div class="lantern"></div>
-
+    
     <!-- Animated Cherry Blossoms -->
     <script>
-        // Create cherry blossoms dynamically
-        document.addEventListener('DOMContentLoaded', function () {
+        // Create cherry blossoms
+        document.addEventListener('DOMContentLoaded', function() {
             const blossomContainer = document.createElement('div');
             blossomContainer.className = 'blossom-container';
             document.body.appendChild(blossomContainer);
-
+            
             for (let i = 0; i < 15; i++) {
                 const blossom = document.createElement('div');
                 blossom.className = 'cherry-blossom';
-
+                
                 // Random position and animation delay
                 blossom.style.left = Math.random() * 100 + 'vw';
                 blossom.style.animationDelay = Math.random() * 15 + 's';
                 blossom.style.width = (Math.random() * 10 + 10) + 'px';
                 blossom.style.height = blossom.style.width;
-
+                
                 blossomContainer.appendChild(blossom);
             }
         });
     </script>
 
-    <!--Navbar-->
+    <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">发现上海</a>
@@ -748,19 +733,23 @@
         </div>
     </nav>
 
-    <!--Video Section -->
-    <section id="home" class="hero">
+    <!-- Video Section -->
+    <div class="hero-video-container">
         <video autoplay muted loop playsinline class="hero-video">
-            <source src="./videos/meet-in-shanghai.mp4" type="video/mp4">
-            Your browser does not support the video tag.
+            <source src="https://www.meet-in-shanghai.net/static/res/video/02.mp4" type="video/mp4">
+            <!-- Fallback image in case video doesn't load -->
+            <img src="https://airpano.com/files/360video/video-shanghai/images/image3.jpg" alt="Shanghai Skyline" style="width: 100%; height: 100%; object-fit: cover;">
         </video>
-
+        <div class="video-overlay"></div>
         <div class="hero-content">
             <h1>Welcome to Shanghai</h1>
             <p>The city of lights, innovation, and culture</p>
-            <a href="#about" class="btn btn-warning">Explore Shanghai</a>
+            <a href="#about" class="btn btn-dark btn-lg">Explore Shanghai</a>
         </div>
-    </section>
+        <div class="scroll-indicator">
+            <span class="arrow"></span>
+        </div>
+    </div>
 
     <!-- About Section-->
     <section id="about" class="container py-5">
@@ -769,23 +758,19 @@
                 <h2 class="mb-2">发现上海</h2>
                 <p class="mb-0">Discover Shanghai</p>
             </div>
-
+            
             <div class="about-body">
                 <h3 class="text-center mb-4" style="color: #FFD700; font-weight: 600;">About Shanghai</h3>
                 <p class="text-center mb-4">
-                    Shanghai, China's largest city, is a global financial hub and cultural melting pot. Known for its
-                    modern
-                    skyline, the Huangpu River, and historic architecture, Shanghai blends tradition and innovation
-                    seamlessly.
+                    Shanghai, China's largest city, is a global financial hub and cultural melting pot. Known for its modern
+                    skyline, the Huangpu River, and historic architecture, Shanghai blends tradition and innovation seamlessly.
                 </p>
                 <p class="text-center">
-                    With a population of over 24 million, Shanghai is one of the world's most populous cities and a
-                    major center
-                    for finance, technology, fashion, and culture. The city's iconic landmarks include The Bund,
-                    Shanghai Tower,
+                    With a population of over 24 million, Shanghai is one of the world's most populous cities and a major center
+                    for finance, technology, fashion, and culture. The city's iconic landmarks include The Bund, Shanghai Tower,
                     Yu Garden, and the historic French Concession.
                 </p>
-
+                
                 <div class="about-highlights">
                     <div class="highlight-item">
                         <h5>Population</h5>
@@ -818,7 +803,8 @@
                 <div class="col-md-4">
                     <div class="place-card-container">
                         <div class="card border-0 place-card">
-                            <img src="./images/thebund.jpg" class="card-img-top" alt="The Bund">
+                            <img src="https://studycli.org/wp-content/uploads/2021/12/the-bund-article-011.jpg.webp"
+                                class="card-img-top" alt="The Bund">
                             <div class="card-body">
                                 <h5 class="card-title">The Bund</h5>
                                 <p class="card-text">Walk along the Huangpu River and enjoy breathtaking views of Shanghai's
@@ -830,7 +816,8 @@
                 <div class="col-md-4">
                     <div class="place-card-container">
                         <div class="card border-0 place-card">
-                            <img src="./images/shanghaitower.jpg" class="card-img-top" alt="Shanghai Tower">
+                            <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/7c/3d/33/caption.jpg?w=1200&h=-1&s=1"
+                                class="card-img-top" alt="Shanghai Tower">
                             <div class="card-body">
                                 <h5 class="card-title">Shanghai Tower</h5>
                                 <p class="card-text">The tallest building in China, offering panoramic city views from the
@@ -842,7 +829,8 @@
                 <div class="col-md-4">
                     <div class="place-card-container">
                         <div class="card border-0 place-card">
-                            <img src="./images/yugarden.jpg" class="card-img-top" alt="Yu Garden">
+                            <img src="https://mediaim.expedia.com/destination/1/1e88644ee9a8b6404ff1a488f0fa706d.jpg"
+                                class="card-img-top" alt="Yu Garden">
                             <div class="card-body">
                                 <h5 class="card-title">Yu Garden</h5>
                                 <p class="card-text">A beautiful classical garden that reflects traditional Chinese art and
@@ -854,7 +842,8 @@
                 <div class="col-md-4">
                     <div class="place-card-container">
                         <div class="card border-0 place-card">
-                            <img src="./images/huangpuriver.jpg" class="card-img-top" alt="Huangpu River Cruise">
+                            <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/ba/63/6d.jpg"
+                                class="card-img-top" alt="Huangpu River Cruise">
                             <div class="card-body">
                                 <h5 class="card-title">Huangpu River Cruise</h5>
                                 <p class="card-text">The Huangpu River Cruise is a boat tour in Shanghai that lets you see the city's skyline and landmarks along the river.</p>
@@ -865,7 +854,8 @@
                 <div class="col-md-4">
                     <div class="place-card-container">
                         <div class="card border-0 place-card">
-                            <img src="./images/shanghaimuseum.jpg" class="card-img-top" alt="Shanghai Museum">
+                            <img src="https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_1200,h_630/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/jcf0wjttbjvoej9gcojv/ShangHai%20museum.jpg"
+                                class="card-img-top" alt="Shanghai Museum">
                             <div class="card-body">
                                 <h5 class="card-title">Shanghai Museum</h5>
                                 <p class="card-text">The Shanghai Museum is a museum in Shanghai that showcases ancient Chinese art and cultural treasures.</p>
@@ -876,7 +866,8 @@
                 <div class="col-md-4">
                     <div class="place-card-container">
                         <div class="card border-0 place-card">
-                            <img src="./images/shanghaidisneyland.jpg" class="card-img-top" alt="Shanghai Disneyland">
+                            <img src="https://res.klook.com/image/upload/q_85/c_fill,w_750/v1732157361/ku7urrnmcgwoeioshoj9.jpg"
+                                class="card-img-top" alt="Shanghai Disneyland">
                             <div class="card-body">
                                 <h5 class="card-title">Shanghai Disneyland Park</h5>
                                 <p class="card-text">Experience the magic at Shanghai Disneyland, featuring unique attractions and entertainment with Chinese cultural elements.</p>
@@ -897,23 +888,19 @@
             <div class="food-body">
                 <div class="row align-items-center mt-4">
                     <div class="col-md-6">
-                        <img src="./images/tasteofshanghai.jpg" class="img-fluid rounded shadow food-image"
-                            alt="Shanghai Cuisine">
+                        <img src="https://girleatworld.net/wp-content/uploads/2017/01/img_4307.jpg"
+                            class="img-fluid rounded shadow food-image" alt="Shanghai Cuisine">
                     </div>
                     <div class="col-md-6">
                         <div class="food-text">
                             <p>
-                                Shanghai cuisine, known as <strong>Hu cuisine</strong>, offers bold yet balanced
-                                flavors. Don't miss
-                                dishes like <em>Xiaolongbao</em> (soup dumplings), <em>Shengjianbao</em> (pan-fried
-                                buns), and
+                                Shanghai cuisine, known as <strong>Hu cuisine</strong>, offers bold yet balanced flavors. Don't miss
+                                dishes like <em>Xiaolongbao</em> (soup dumplings), <em>Shengjianbao</em> (pan-fried buns), and
                                 <em>Sweet Braised Pork Belly</em>.
                             </p>
                             <p class="mt-3">
-                                Other must-try dishes include <em>Shanghai hairy crab</em> in autumn, <em>drunken
-                                    chicken</em>,
-                                and <em>red-braised pork</em>. The cuisine is characterized by its use of soy sauce,
-                                sugar, and rice wine.
+                                Other must-try dishes include <em>Shanghai hairy crab</em> in autumn, <em>drunken chicken</em>,
+                                and <em>red-braised pork</em>. The cuisine is characterized by its use of soy sauce, sugar, and rice wine.
                             </p>
                         </div>
                     </div>
@@ -938,13 +925,13 @@
                                 <p class="mb-1">GMT +08:00</p>
                                 <p class="subtext">No time difference</p>
                             </div>
-
+                            
                             <div class="mb-3">
                                 <h6>Currency</h6>
                                 <p class="mb-1">Chinese Yuan</p>
                                 <p class="subtext">1 PHP = 0.2 CNY</p>
                             </div>
-
+                            
                             <div class="mb-3">
                                 <h6>Official languages</h6>
                                 <p class="mb-1">Chinese</p>
@@ -956,18 +943,17 @@
                             <h5>Best time to visit</h5>
                             <div class="mb-3">
                                 <p class="mb-1">OCT - APR</p>
-                                <p class="subtext">Cool, comfortable temperature; do note that December September is
-                                    peak season and quite crowded</p>
+                                <p class="subtext">Cool, comfortable temperature; do note that December September is peak season and quite crowded</p>
                             </div>
-
+                            
                             <div class="mb-3">
                                 <p class="mb-1">FEB - APR</p>
                                 <p class="subtext">Cherry Blossoms</p>
                             </div>
                         </div>
-
+                        
                         <div class="facts-divider"></div>
-
+                        
                         <div class="row">
                             <div class="col-6">
                                 <div class="fact-category">
@@ -985,9 +971,9 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="facts-divider"></div>
-
+                
                 <div class="faq-section">
                     <h5 class="mb-2">FAQs about Shanghai</h5>
                     <p class="mb-0 subtext">Have questions? Check our FAQ section for more information.</p>
@@ -1009,7 +995,7 @@
         </div>
     </section>
 
-    <!--Footer -->
+    <!--Footer-->
     <footer class="footer">
         <p>&copy; 2025 Discover Shanghai</p>
     </footer>
